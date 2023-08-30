@@ -723,7 +723,7 @@ console.log(sortearNumero(10))
     console.log(contarCaractere2('a', 'A sorte favorece os audazes'))
     console.log(contarCaractere2('r', 'Me divirto aprendendo a programar'))
 
-    // Exercicio 24
+// Exercicio 24
     console.log('\nExercicio 24...')
 
     function buscarPalavrasSemelhantes(palavra, arrayStrings) {
@@ -758,5 +758,225 @@ console.log(sortearNumero(10))
     console.log(buscarPalavrasSemelhantes2('c+', ['javascript', 'python', 'c++', 'java']))
 
 // Exercicio 25
+console.log('\nExercicio 25...')
+
+    function removerVogais(string) {
+        
+        const vogais = ['A', 'E', 'I', 'O', 'U']
+
+        let modificado = string.split('').filter( elemento => {
+            if(!vogais.includes(elemento.toUpperCase()))
+                return elemento
+            }).join('')
+
+        return modificado
+
+    }
+
+    // OU
+
+    function removerVogais2(string) {
+        
+        const vogais = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u']
+
+        vogais.forEach( vogal => {
+            string = string.replace(vogal, '')
+        })
+
+        return string
+    }
+
+    console.log(removerVogais('TEste'))
+    console.log(removerVogais2('TEste'))
+
+// Exercicio 26
+console.log('\nExercicio 26...')
+
+    const obj26 = {
+        a: '1',
+        b: '2',
+        c: '3',
+        d: '4'
+    }
+
+    function inverterObjeto(obj) {
+        
+        let objModificado = Object.entries(obj).map( ([chave, valor]) => {
+            return [valor, chave]
+        })
+
+        return Object.fromEntries(objModificado)
+    }
+
+    // OU 
+
+    function inverterObjeto2(obj) { 
+
+        const objetoInvertido = {}
+
+        Object.entries(obj).forEach( parChaveValor => {
+            const chave = 0, valor = 1
+            objetoInvertido[ parChaveValor[valor] ] = parChaveValor[chave]
+        })
+
+        return objetoInvertido 
+    }
 
 
+    console.log(inverterObjeto(obj26))
+
+    console.log(inverterObjeto2(obj26))
+
+// Exercicio 27
+console.log('\nExercicio 27...')
+
+    function filtarPorQtDigitos(array, qtDigitos) {
+
+        let arrayFiltrado = array.filter( numero => String(numero).length == qtDigitos )
+
+        return arrayFiltrado
+    }
+
+    // OU
+
+    function filtarPorQtDigitos2(numeros, quantidadeDesejada) { 
+
+        let resultado = []
+
+        for(numero of numeros){
+            if(String(numero).length === quantidadeDesejada) 
+                resultado.push(numero)
+        }
+
+        return resultado 
+    }
+
+        console.log(filtarPorQtDigitos([2, 10, 56, 101, 23, 6, 1], 2))
+        console.log(filtarPorQtDigitos2([2, 10, 56, 101, 23, 6, 1], 2))
+
+// Exercicio 28
+    console.log('\nExercicio 28...')
+
+    function segundoMaiorNum(array) {
+        
+        let arrayCopia = array
+        let indiceMaior = 0
+        let segundoMaior = 0
+
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] > array[indiceMaior]) {
+                indiceMaior = i
+            }
+        }
+
+        arrayCopia.splice(indiceMaior, 1)
+
+        arrayCopia.forEach( elemento => {
+            if (elemento > segundoMaior) {
+                segundoMaior = elemento
+            }
+        })
+
+        return segundoMaior
+    }
+
+    // OU (com ordenação de array)
+
+    function segundoMaiorNum2(array) {
+        let arrayCopia = array
+
+        for (let i = 1; i < arrayCopia.length; i++) {
+            for (let j = i - 1; j >= 0 ; j--) {
+                if (arrayCopia[i] < arrayCopia[j]) {
+                    temp = arrayCopia[i]
+                    arrayCopia[i] = arrayCopia[j]
+                    arrayCopia[j] = temp
+                    i--
+                }
+            }
+        }
+
+    return arrayCopia[array.length - 2]
+    }
+
+    // OU 
+
+    function segundoMaiorNum3(array) {
+        
+        let maior = 0
+        let segMaior = 0
+
+        for (const valor of array) {
+            
+            if (valor > maior) {
+                segMaior = maior
+                maior = valor
+            } else if (valor > segMaior){
+                segMaior = valor
+            }
+        }
+
+        return segMaior
+
+    }
+
+    console.log(segundoMaiorNum([10, 28, 9, 14, 54, 72, 11, 2, 3]))  // resultado = 54
+    console.log(segundoMaiorNum2([10, 28, 9, 14, 54, 72, 11, 2, 3]))  // resultado = 54
+    console.log(segundoMaiorNum3([10, 28, 9, 14, 54, 72, 11, 2, 3]))  // resultado = 54
+    console.log(segundoMaiorNum3([3, 4, 9, 8]))  // resultado = 8
+
+// Exercicio 29
+    console.log('\nExercicio 29...')
+
+    const notas = {
+        'Joao': [7.6, 3.4, 6.0, 9.8, 6.7],
+        'Maria':  [9.6, 8.8, 7.9, 10, 6.5],
+        'Flavio': [9.5, 2.3, 5.8, 9.0, 5.0]
+    }
+
+    let soma = array => array.reduce( (acumulador, atual) => acumulador + atual)
+    let media = array => (soma(array) / array.length).toFixed(2)
+
+    function mediaNotas(obj) {
+
+        let medias = Object.entries(obj).map( ([nome, notas]) => {
+            return [nome, media(notas)]
+        })
+
+        let indiceMaior = 0
+
+        for (let i = 0; i < medias.length; i++) {
+
+            if (medias[i][1] > medias[indiceMaior][1]) {
+                indiceMaior = i
+            }
+        }
+
+        return obj = {
+            nome: medias[indiceMaior][0],
+            media: medias[indiceMaior][1]
+        }
+    }
+
+    // OU
+
+    function mediaNotas2(obj) {
+
+        const mediasEstudantes = Object.entries(obj).map( estudante => {
+            const chave = 0
+            const valor = 1
+
+            return { 
+                'nome': estudante[chave],
+                'media': media(estudante[valor])
+            }
+        })
+
+        const mediasOrdenadas = mediasEstudantes.sort((estudanteA, estudanteB) => estudanteB.media - estudanteA.media)
+        const melhorEstudante = mediasOrdenadas[0]
+
+        return melhorEstudante
+    }
+
+    console.log(mediaNotas(notas))
+    console.log(mediaNotas2(notas))

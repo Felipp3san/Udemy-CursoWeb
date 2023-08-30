@@ -1,0 +1,68 @@
+<!-- Tabela -->
+<style>
+    table{
+        border-collapse: collapse;
+    }
+
+    caption {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    th,td {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid black; 
+    }
+
+    thead tr {
+        text-transform: uppercase;
+        color: white;
+        border-bottom: 3px solid black;
+        background-color: gray;
+    }
+
+    tbody tr:hover {
+        background-color: #dedede;
+    }
+
+    tfoot td{
+        background-color: #dedede;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+</style>
+
+<table>
+    <caption>Produtos</caption>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ipad</td>
+            <td>3289.00</td>
+            <td>5</td>
+            <td>16445.00</td>
+        </tr>
+        <tr>
+            <td>Samsung S9</td>
+            <td>2649.00</td>
+            <td>8</td>
+            <td>21192.00</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total</td>
+            <td>37637.00</td>
+        </tr>
+    </tfoot>
+</table>

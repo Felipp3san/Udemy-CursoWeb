@@ -1,0 +1,72 @@
+<h1>Projeto</h1>
+
+<ul class="tree">
+    <li class="nivel1">
+        <span wm-folder>backend</span>
+        <ul>
+            <li class="nivel2">
+                <span wm-folder>app</span>
+                <ul class="nivel3">
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li class="nivel2">
+                <span wm-folder>config</span>
+                <ul class="nivel3">
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class="nivel1">
+        <span wm-folder>frontend</span>
+        <ul>
+            <li class="nivel2">
+                <span wm-folder>public</span>
+                <ul class="nivel3">
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul> 
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+
+<!-- MINHA SOLUÇÃO
+    <script>
+    document.querySelectorAll('li').forEach(li => {
+        li.onclick = function (e) {
+            event.stopPropagation();
+            let ul = this.querySelector('ul')
+                if (ul.style.display === "none") {
+                    ul.style.display = "block";
+                } else {
+                    ul.style.display = "none";
+                }
+            }})
+</script> 
+-->
+
+
+
+<!-- SOLUÇÃO COD3R -->
+
+<script>
+    document.querySelectorAll('[wm-folder]').forEach(folder => {
+        folder.onclick = function(e){
+            const ul = folder.nextElementSibling
+                if (ul.style.display === "none") {
+                    ul.style.display = "block";
+                } else {
+                    ul.style.display = "none";
+                }
+        }
+    })
+</script>

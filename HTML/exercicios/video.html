@@ -1,0 +1,100 @@
+<video id="meuVideo" width="800" controls height="450">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser não suporta a tag vídeo.
+</video>
+
+<div class="progresso">
+    <div wm-barraProgresso="meuVideo">
+        <span wm-porcentagemInterna="meuVideo"></span>
+    </div>
+    <span wm-porcentagemExterna="meuVideo"></span>
+</div>
+
+<div class="play-pause">
+    <button wm-play="meuVideo" class="play">Play</button>
+    <button wm-pause="meuVideo" class="pause">Pause</button>
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .progresso {
+        border: 2px solid black;
+        width: 800px;
+        height: 20px;
+    }
+
+    .play-pause {
+        width: 800px;
+        height: 50px;
+    }
+
+    .play, .pause {
+        font-size: 20px;
+        margin: 0;
+        width: 398px;
+        height: 100%;
+    }
+
+    [wm-barraProgresso="meuVideo"] {
+        width: 0;
+        height: 100%;
+        background-color: rgb(181, 0, 0);
+        text-align: right;
+        color: white;
+        font-family: sans-serif;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    [wm-porcentagemInterna="meuVideo"] {
+        margin-right: 4px;
+    }
+
+    [wm-porcentagemExterna="meuVideo"] {
+        color: black;
+        font-family: sans-serif;
+    }
+
+</style>
+
+<script>
+
+    function configurarVideo(id) {
+
+        const meuVideo = document.getElementById(id)
+        const barraProgresso = document.querySelector(`[wm-barraProgresso=${id}]`)
+        const porcentagemInterna = document.querySelector(`[wm-porcentagemInterna=${id}]`)
+        const porcentagemExterna = document.querySelector(`[wm-porcentagemExterna=${id}]`)
+        const play = document.querySelector(`[wm-play=${id}]`)
+        const pause = document.querySelector(`[wm-pause=${id}]`)
+
+        meuVideo.oncontextmenu = () => false
+
+        play.onclick = function (e) {
+            meuVideo.play()
+        }
+
+        pause.onclick = function (e) {
+            meuVideo.pause()
+        }
+
+        setInterval(() => {   
+                let porcentagem = (meuVideo.currentTime / meuVideo.duration) * 100
+                barraProgresso.style.width = porcentagem + '%'
+
+                if (porcentagem > 95) {
+                    porcentagemExterna.innerHTML = ''
+                    porcentagemInterna.innerHTML = parseInt(porcentagem) + '%'
+                } else
+                    porcentagemInterna.innerHTML = ''
+                    porcentagemExterna.innerHTML = parseInt(porcentagem) + '%'                  
+            }, 30)
+
+    }
+
+    configurarVideo('meuVideo')
+
+</script>

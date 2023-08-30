@@ -1,0 +1,136 @@
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" alt="primeira imagem" width="513" height="342" title="Mura da Cidade por Tarso Bessa">
+    </p>
+    
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" alt="Intro Cod3r" height="342">
+    </p>
+    
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="Rio de Janeiro" height="342">
+    </p>
+    
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="Avatar" height="50" align="left">
+        Texto vofnsaovndiosan dnfdoisan oicdnsa icdnsaoi cndsao cndiosaniocndsanc
+         cndiasn ciodsnaoicdnsaoiscndsaiondsn cndj ncjsdnakcdsa ncjsdnakcdsa
+         ncidsnain cdsnai ncidsnain
+    </p>
+    
+    <p class="cidade"></p>
+    
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png"
+                media="(min-width: 600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+        </picture>
+    </p>    
+</div>
+
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .circular {
+        width: 513px;
+        background-color: gray;
+    }
+
+    .cidade {
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img {
+        margin-right: 10px;
+    }
+
+</style>
+
+<script>
+
+    function inicio() {
+        const p = document.querySelectorAll('[wm-slider] > p')
+        const elementos = Array.from(p)
+
+        posicionarExibirImagem(elementos, elementos[0])
+    }
+    
+
+    function slider(elementos, elemento, inicio, fim, passo) {
+        timer =  setInterval(() => {
+            inicio += passo
+            elemento.style.left = inicio + "px"
+
+            if (inicio >= fim) {
+                clearInterval(timer)
+                elemento.style.display = "none"
+
+                posicionarExibirImagem(elementos, getProximo(elementos, elemento))
+            }
+        }, 25);
+    }
+
+    function posicionarExibirImagem(elementos, elemento) {
+        elemento.style.display = "block"
+
+        inicio = -elemento.clientWidth
+        fim = innerWidth
+
+        elemento.style.left = `${inicio}px`
+
+        slider(elementos, elemento, inicio, fim, 5)
+    }
+
+    function getProximo(elementos, elemento) {
+        if (elementos.indexOf(elemento) == elementos.length -1) {
+            return elementos[0]
+        }else {
+            return elementos[elementos.indexOf(elemento) + 1]
+        }
+    }
+
+inicio()
+
+</script>
+
+<!-- function slider(indice, inicio, fim, passo) {
+    timer =  setInterval(() => {
+        inicio += passo
+        p[indice].style.left = inicio + "px"
+
+        if (inicio >= fim) {
+            clearInterval(timer)
+            p[indice].style.display = "none"
+
+            indice == p.length - 1? posicionarExibirImagem(0) : posicionarExibirImagem(indice + 1)
+        }
+    }, 25);
+}
+
+function posicionarExibirImagem(indice = 0) {
+    p[indice].style.display = "block"
+
+    inicio = -p[indice].clientWidth
+    fim = innerWidth
+
+    p[indice].style.left = `${inicio}px`
+
+    slider(indice, inicio, fim, 10)
+} -->
